@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "pack": "build --dir",
-    "dist": "build --config ./electron-builder.yaml"
+    "dist": "electron-builder --config ./electron-builder.yaml",
+    "dist2": "build"
   },
   "repository": "https://github.com/oikonomopo/electron-deep-linking-osx",
   "keywords": [
@@ -20,7 +21,7 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^12.0.0",
-    "electron-builder": "^20.40.2"
+    "electron-builder": "^22.10.5"
   },
   "build": {
     "appId": "com.myapp.myapp",
@@ -34,12 +35,24 @@
       "category": "public.app-category.Reference"
     },
     "win": {},
-    "linux":{
-      "name": "myapp",
-      "exec": "myapp %u",
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage"
+        }
+      ],
+      "maintainer": "Jibra",
+      "synopsis": "Some Stuff",
       "category": "Utility",
-      "mimeTypes": "x-scheme-handler/myapp",
-      "artifactName": "myapp"
+      "artifactName": "myapp.${ext}",
+      "desktop": {
+        "Name": "myapp",
+        "Terminal": "false",
+        "exec": "myapp %u",
+        "mimeTypes": [
+          "x-scheme-handler/myapp"
+        ]
+      }
     }
   }
 }
