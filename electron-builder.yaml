@@ -1,0 +1,20 @@
+# electron-builder.yml
+appId: com.myapp.myapp
+productName: myapp
+directories:
+    output: dist
+linux:
+    #icon: src/assets/icons/app/icon@256x256.png
+    category: Utility
+    mimeTypes: [x-scheme-handler/myapp]     # Define MimeType
+    artifactName: ${productName}.${ext}     # Define generated Output
+    desktop:
+        name: myapp              
+        exec: myapp %u                      # Define Exec
+        category: Utility
+        mimeTypes: [x-scheme-handler/myapp] # Define MimeType
+        artifactName: ${productName}.${ext}
+    target:
+        - target: AppImage
+          arch:
+              - x64

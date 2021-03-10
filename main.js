@@ -19,7 +19,7 @@ if (gotTheLock) {
 
     // Protocol handler for win32
     // argv: An array of the second instance’s (command line / deep linked) arguments
-    if (process.platform == 'win32') {
+    if (process.platform == 'win32' || process.platform === 'linux') {
       // Keep only command line / deep linked arguments
       deeplinkingUrl = argv.slice(1)
     }
@@ -58,7 +58,7 @@ function createWindow() {
   mainWindow.webContents.openDevTools()
 
   // Protocol handler for win32
-  if (process.platform == 'win32') {
+  if (process.platform == 'win32' || process.platform === 'linux') {
     // Keep only command line / deep linked arguments
     deeplinkingUrl = process.argv.slice(1)
   }
@@ -95,10 +95,10 @@ app.on('activate', function() {
   }
 })
 
-if (!app.isDefaultProtocolClient('myapp')) {
+// if (!app.isDefaultProtocolClient('myapp')) {
   // Define custom protocol handler. Deep linking works on packaged versions of the application!
   app.setAsDefaultProtocolClient('myapp')
-}
+// }
 
 app.on('will-finish-launching', function() {
   // Protocol handler for osx
